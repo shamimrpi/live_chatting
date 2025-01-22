@@ -2,6 +2,7 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,9 @@ Route::get('/message', function () {
 Route::post('/send-message', function () {
     broadcast(new \App\Events\MessageSent(request()->message));
 });
-
+Route::get('/send-signal', [VideoController::class, 'video']);
+Route::post('/send-signal', [VideoController::class, 'sendSignal']);
+Route::get('/live-stream', [VideoController::class, 'showStream']);
 
 Auth::routes();
 
